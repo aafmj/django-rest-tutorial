@@ -1,0 +1,12 @@
+[Unit]
+Description=myPro
+After=network.target
+
+[Service]
+User=faradars
+Group=www-data
+WorkingDirectory=/home/faradars/myPro
+ExecStart=/home/faradars/myPro/env/bin/gunicorn --timeout 120 --workers 3 --bind unix:/tmp/myPro.sock myPro.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
